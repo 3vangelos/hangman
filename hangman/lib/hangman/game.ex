@@ -16,8 +16,8 @@ defmodule Hangman.Game do
   end
 
   def move(game, guess) do
-    game = make_move(game, guess)
-    { game, tally(game) }
+    g = make_move(game, guess)
+    { g, tally(g) }
   end
 
   def tally(game) do
@@ -49,8 +49,8 @@ defmodule Hangman.Game do
 
   defp score_guess(game, _good_guess = true) do
     new_state = MapSet.new(game.letters)
-      |>  MapSet.subset?(game.used)
-      |> maybe_won()
+    |> MapSet.subset?(game.used)
+    |> maybe_won()
     Map.put(game, :game_state, new_state)
   end
 
@@ -60,8 +60,8 @@ defmodule Hangman.Game do
 
   defp score_guess(game = %{ turns_left: turns_left}, _not_good_guess) do
     %{ game |
-      game_state: :bad_guess,
-      turns_left: turns_left - 1
+       game_state: :bad_guess,
+       turns_left: turns_left - 1
     }
   end
 
