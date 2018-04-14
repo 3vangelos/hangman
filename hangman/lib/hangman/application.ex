@@ -12,9 +12,7 @@ defmodule Hangman.Application do
 
       options = [
         name: Hangman.Supervisor,
-        strategy: :simple_one_for_one,
-        max_restarts: 1,
-        max_seconds: 10
+        strategy: :simple_one_for_one
       ]
 
       Supervisor.start_link(children, options)
